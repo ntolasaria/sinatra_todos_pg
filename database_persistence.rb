@@ -90,7 +90,7 @@ class DatabasePersistence
   end
 
   def find_todos_for_list(list_id)
-    todo_sql = "SELECT * FROM todos WHERE list_id = $1;"
+    todo_sql = "SELECT * FROM todos WHERE list_id = $1 ORDER BY id;"
     todos_result = query(todo_sql, list_id)
     todos = todos_result.map do |todo_tuple|
       { id: todo_tuple["id"].to_i, name: todo_tuple["name"],
